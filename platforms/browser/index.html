@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';
+		media-src *;
+		script-src 'self' 'unsafe-inline';
+		img-src 'self' data: content:;">
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+    </head>
+    <body>
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+		
+			<div class="page">
+				<p><img src="logo.jpg" alt="image" id="photo" /></p>
+				<p><button id="btn">Take Picture</button></p>
+				<p id="msg"></p>
+			</div>
+			<script> type="text/javascript" src="cordova.js"></script>
+			<script>
+				let app = {
+					init: function(){
+						document.getElementById('btn').addEventListener('click', app.takephoto);
+					
+					},
+					takephoto: function(){
+						let opts = {
+							quality: 80,
+							destinationType: camera.DestinationType.File_URI,
+							sourceType: Camera.PictureSourceType.CAMERA,
+							mediatype: Camera.MediaType.PICTURE,
+							encodingType: Camera.Encoding.JPG,
+							cameraDirection: Camera.Direction.BACK,targetWidth: 300,
+							targetHeight: 400
+						};
+						
+						navigator.camera.getPicture(app.success, app.failure, opts);
+					},
+					success: function(imgURI){
+						document.getElementById('msg').textContent = imgURI;
+						document.getElementByID('photo').src = imageURI;
+					
+					},
+					failure: function(){
+						document.getElementById('msg').textContent = imgURI;
+					}
+				};
+				document.addEventListener('devicerady', app.init);
+        </script>
+    </body>
+</html>
