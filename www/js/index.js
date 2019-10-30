@@ -17,10 +17,44 @@
  * under the License.
  */
 
-$.getJSON("http://api.openweathermap.org/data/2.5/weather?q=London&APPID=7ff99eb8b9891db329a2e55eea844832", 
-function(data) {
-    console.log(data);
-    console.log($("#temp"));
-	$("#temp")[0].append(data.name);
-            }
-        );
+/*$.getJSON("http://api.openweathermap.org/data/2.5/weather?q=London&APPID=7ff99eb8b9891db329a2e55eea844832", 
+    function(data) {
+        console.log(data);
+        console.log($("#temp"));
+	    $("#temp")[0].append(data.name);
+    });
+*/
+
+            let app = {
+                init: function(){
+                    console.log("in init");
+                    document.getElementById('btn').addEventListener('click', app.takephoto);
+                
+                },
+                takephoto: function(){
+                    console.log('taking picture');
+                    let opts = {
+                        quality: 80,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        mediatype: Camera.MediaType.PICTURE,
+                        //encodingType: Camera.Encoding.JPEG,
+                        cameraDirection: Camera.Direction.BACK,
+                        targetWidth: 300,
+                        targetHeight: 400
+                    };
+                    
+                    navigator.camera.getPicture(app.success, app.failure, opts);
+                },
+                success: function(imgURI){
+                    document.getElementById('msg').textContent = imgURI;
+                    alert("test");
+                    alert(document.getElementById('photo'));
+                    document.getElementById('photo').src = "data:image/jpeg;base64," + imgURI;
+                },
+                failure: function(){
+                    document.getElementById('msg').textContent = imgURI;
+                }
+            };
+            document.addEventListener('deviceready', app.init, false);
+

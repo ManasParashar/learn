@@ -16,14 +16,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">	
 
-        <script crossorigin="anonymous"src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
     
-        <script crossorigin="anonymous" src="js/index.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         
         </head> 
         <body>
           <div>
               <p id="temp"></p>
           </div>
+
+<!--camera plugin-->
+
+<div class="app">
+        <h1>Take Picture</h1>
+    </div>
+    
+        <div class="page">
+            <p><button id="btn">Take Picture</button></p>
+            <img src="img/logo.png" alt="image" id="photo" />
+			<p id="msg"></p>
+        </div>
+
+
         </body>	
     </html>
